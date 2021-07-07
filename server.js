@@ -17,7 +17,7 @@ mongoose.connection.once('open', () => {
     console.log('connected to mongo :)')
 });
 
-// Configure my cors middleware for other requests
+// Configure the cors middleware for other requests
 const whitelist = ['http://localhost:3000']
 const corsOptions = {
     origin: function (origin, callback) {
