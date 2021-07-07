@@ -31,8 +31,8 @@ const corsOptions = {
 
 APP.use(cors(corsOptions))
 
-const mynotesController = require('./controllers/my-notes')
-APP.use('/my-notes', mynotesController)
+const notesController = require('./controllers/my-notes')
+APP.use('/my-notes', notesController)
 
 APP.listen(PORT, () => {
     console.log('🎉🎊', 'celebrations happening on port', PORT, '🎉🎊',)
