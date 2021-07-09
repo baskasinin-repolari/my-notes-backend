@@ -3,9 +3,9 @@ const notes = express.Router()
 
 const Note = require('../models/note')
 
-// Show route
+// Get All Notes route
 notes.get('/', (req, res) => {
-    Note.find({}, (err, foundNotes) => {
+    Note.find({}).sort({date: 'desc'}).exec((err, foundNotes) => {
         if (err) {
             res.status(400).json({ error: err.message })
         }
