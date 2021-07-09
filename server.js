@@ -31,7 +31,7 @@ const corsOptions = {
 
 APP.use(cors(corsOptions))
 
-const notesController = require('./controllers/my-notes')
+const notesController = require('./controllers/notes')
 APP.use('/my-notes', notesController)
 
 APP.listen(PORT, () => {

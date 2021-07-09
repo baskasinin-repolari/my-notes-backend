@@ -25,6 +25,18 @@ notes.post('/', (req, res) => {
     })
 })
 
+// Get single route
+notes.get('/:id', (req, res) => {
+    Note.findById(req.params.id, (err, foundNote) => {
+        if (err) {
+            // Return error as json
+            res.status(400).json({ error: err.message })
+        }
+        // Return updated note
+        res.status(200).json(foundNote)
+    })
+})
+
 // Update route
 notes.put('/:id', (req, res) => {
     Note.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updatedNote) => {
