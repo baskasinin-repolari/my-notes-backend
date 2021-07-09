@@ -39,6 +39,7 @@ notes.get('/:id', (req, res) => {
 
 // Update route
 notes.put('/:id', (req, res) => {
+    req.body['date'] = Date.now()
     Note.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updatedNote) => {
         if (err) {
             // Return error as json
