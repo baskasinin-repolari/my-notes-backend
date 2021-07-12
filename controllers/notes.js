@@ -32,7 +32,7 @@ notes.get('/:id', (req, res) => {
             // Return error as json
             res.status(400).json({ error: err.message })
         }
-        // Return updated note
+        // Return found note
         res.status(200).json(foundNote)
     })
 })
