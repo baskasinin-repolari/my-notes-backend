@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const OktaJwtVerifier = require('@okta/jwt-verifier');
+const db = mongoose.connection;
 
 const oktaJwtVerifier = new OktaJwtVerifier({
     clientId: '0oa17cxnn4No03oAI5d7',
@@ -9,9 +10,27 @@ const oktaJwtVerifier = new OktaJwtVerifier({
 });
 
 const APP = express();
-const PORT = 3003;
+PORT = process.env.PORT || 3000
+
+// How to connect to the database either via heroku or locally
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/'+ `mynotes-api`;
+
+// Connect to Mongo
+mongoose.connect(MONGODB_URI ,  { useNewUrlParser: true});
+
+// Error / success
+db.on('error', (err) => console.log(err.message + ' is Mongod not running?'));
+db.on('connected', () => console.log('mongo connected: ', MONGODB_URI));
+db.on('disconnected', () => console.log('mongo disconnected'));
+
+// open the connection to mongo
+db.on('open' , ()=>{});
 
 // Middleware
+
+//use public folder for static assets
+app.use(express.static('public'));
+
 APP.use(express.json());
 
 // Configure the cors middleware for other requests
@@ -51,7 +70,8 @@ mongoose.connection.once('open', () => {
 });
 
 const notesController = require('./controllers/notes')
-const usersController = require('./controllers/users')
+const usersController = require('./controllers/users');
+const { config } = require('dotenv');
 APP.use('/notes', notesController)
 APP.use('/users', usersController)
 
