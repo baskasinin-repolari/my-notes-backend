@@ -10,13 +10,13 @@ const oktaJwtVerifier = new OktaJwtVerifier({
 });
 
 const APP = express();
-PORT = process.env.PORT || 3000
+PORT = process.env.PORT || 3003
 
 // How to connect to the database either via heroku or locally
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/'+ `mynotes-api`;
 
 // Connect to Mongo
-mongoose.connect(MONGODB_URI ,  { useNewUrlParser: true});
+mongoose.connect(MONGODB_URI ,  { useNewUrlParser: true, useUnifiedTopology: true });
 
 // Error / success
 db.on('error', (err) => console.log(err.message + ' is Mongod not running?'));
@@ -29,12 +29,12 @@ db.on('open' , ()=>{});
 // Middleware
 
 //use public folder for static assets
-app.use(express.static('public'));
+APP.use(express.static('public'));
 
 APP.use(express.json());
 
 // Configure the cors middleware for other requests
-const whitelist = ['http://localhost:3000']
+const whitelist = ['http://localhost:3000', 'https://lit-fjord-49866.herokuapp.com/']
 const corsOptions = {
     origin: function (origin, callback) {
         if (whitelist.indexOf(origin) !== -1) {
@@ -60,11 +60,6 @@ APP.use(async (req, res, next) => {
     }
 });
   
-// Setup our Mongo connection
-mongoose.connect('mongodb://localhost:27017/my-notes', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-});
 mongoose.connection.once('open', () => {
     console.log('connected to mongo :)')
 });
