@@ -1,5 +1,5 @@
 <h2> My Notes App API </h2>
-This is an API for a note app built with Node.js, Express and MongoDB. The API is public and any one that has a valid [OKTA](https://developer.okta.com/) JWT token can use its supported endpoints. The token must be passed through the headers as a bearer token for all requests.
+This is an API for a note app built with Node.js, Express and MongoDB. The API is public and any one that has a valid OKTA JWT token can use its supported endpoints. The token must be passed through the headers as a bearer token for all requests.
 
 At its core the app supports adding/deleting/updating notes. All notes are related to the authenticated user. Also, notes can have multiple tags, which just like notes are visible (related) only to the authenticated user.
 
