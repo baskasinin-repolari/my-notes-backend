@@ -5,7 +5,7 @@ At its core the app supports adding/deleting/updating notes. All notes are relat
 
 <h4> Demo: </h4>
 
-[heroky deployment](https://herokuapp.com/)
+Heroku API: https://secure-plains-54293.herokuapp.com/
 
 The above link will take you to our app on Heroku. However, I recommend using the [front-end](link to front end deployment goes ehere) app for a better testing experience. 
 
