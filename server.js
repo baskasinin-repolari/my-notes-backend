@@ -34,7 +34,7 @@ APP.use(express.static('public'));
 APP.use(express.json());
 
 // Configure the cors middleware for other requests
-const whitelist = ['http://localhost:3000', 'https://lit-fjord-49866.herokuapp.com/']
+const whitelist = ['http://localhost:3000', 'https://vast-plateau-89069.herokuapp.com/']
 const corsOptions = {
     origin: function (origin, callback) {
         if (whitelist.indexOf(origin) !== -1) {
