@@ -34,13 +34,13 @@ APP.use(express.static('public'));
 APP.use(express.json());
 
 // Configure the cors middleware for other requests
-const whitelist = ['http://localhost:3000', 'https://vast-plateau-89069.herokuapp.com/']
+const whitelist = ['http://localhost:3000', 'https://vast-plateau-89069.herokuapp.com']
 const corsOptions = {
     origin: function (origin, callback) {
         if (whitelist.indexOf(origin) !== -1) {
             callback(null, true)
         } else {
-            callback(new Error('Not allowed by CORS'))
+            callback(new Error('Not allowed by CORS.'))
         }
     }
 }
